@@ -1,0 +1,9 @@
+﻿
+
+
+@foreach (var item in (List<department>)ViewBag.dept)
+{
+    <li>@Html.ActionLink(item.Name, "deptdetails", "userdept" ,new {Id=item.Id } ,null)</li>
+
+}
+

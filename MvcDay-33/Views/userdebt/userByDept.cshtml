@@ -1,0 +1,30 @@
+﻿@model List<user>
+
+    <table class="table">
+        <tr>
+            <th>@Html.ActionLink("Name", "Index", new { sortedby = "Name" })</th>
+            <th>@Html.ActionLink("E-mail", "Index", new { sortedby = "E-mail" })</th>
+            <th>age</th>
+            <th>Address</th>
+            <th>department</th>
+            <th>Photo</th>
+            <th> </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(n => item.Name)</td>
+                <td>@item.Email</td>
+                <td>@item.age</td>
+                <td>@item.Address</td>
+                <td>@item.department.Name</td>
+                <td><img src="~/attach/@item.Photo" width="100" height="100" /></td>
+                <td>
+                    @Html.ActionLink("Edit", "edit", new { Id = item.Id }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "delete", new { Id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('are you sure to delete" + item.Name + "') " })
+            </td>
+        </tr>
+
+    }
+    </table>

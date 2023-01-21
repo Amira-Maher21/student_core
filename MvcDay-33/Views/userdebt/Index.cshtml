@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-5">
+        Department
+        @Html.DropDownList("deptId",(SelectList)ViewBag.debt, "choose" , new { @class="form-control"})
+    </div>
+</div>
+<div id="d1">
+
+</div>
+@section scripts{
+    <script>
+        $("#deptId").on("change", function () {
+            let Id = $("#deptId").val();
+           // alert(Id)
+            //ajax
+            $("#d1").load("/userdebt/userByDept?deptId=" + Id);
+        })
+        $(function () {
+         //  $("#d1").load("/userdebt/userByDept");
+            //ajax
+            $.ajax({
+            url: '/userdebt/userByDept',
+            method: 'GET',
+            succrss: function (data) {
+                $("#d1").append(data);
+                },
+                error: function (error) {
+
+                }
+            })
+        })
+    </script>
+    }

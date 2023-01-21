@@ -1,0 +1,61 @@
+﻿@model List<user>
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <tr>
+        <th>@Html.ActionLink("Name", "Index", new { sortedby = "Name" })</th>
+        <th>@Html.ActionLink("E-mail", "Index", new { sortedby = "E-mail" })</th>
+        <th> </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(n => item.Name)</td>
+            <td>@item.Email</td>
+            <td>
+                @Html.ActionLink("Edit", "edit", new { Id = item.Id }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "delete", new { Id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('are you sure to delete" + item.Name + "') " }) |
+                @Ajax.ActionLink("view Details","details",new {Id=item.Id },new AjaxOptions()
+           {
+               UpdateTargetId="div1",
+               InsertionMode=InsertionMode.Replace,
+               OnComplete="sh"
+               
+           })
+            </td>
+        </tr>
+
+    }
+</table>
+<div class="modal" id="s1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <input  type="button" value="X" data-dismiss="modal" style="float:right" />
+
+                <h1> User Details </h1>
+            </div>
+            <div class="modal-body" id="div1">
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@*<input  type="button" value="show" onclick="sh()" />*@
+ 
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        function sh() {
+            $("#s1").modal({ show: true })
+        }
+    </script>
+    }
+
+

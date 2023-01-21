@@ -1,0 +1,57 @@
+﻿@model user
+@{
+    ViewBag.Title = "create";
+}
+
+<h2>create</h2>
+<div class="form-group">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-3"> @Html.LabelFor(n => n.Name) </div>
+            <div class="col-md-5"> @Html.TextBoxFor(n => n.Name, new { @class = "form_control" }) </div>
+            <div class="col-md-3"> @Html.ValidationMessageFor(n => n.Name)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"> @Html.LabelFor(n => n.Email) </div>
+            <div class="col-md-5"> @Html.TextBoxFor(n => n.Email, new { @class = "form_control" }) </div>
+            <div class="col-md-3"> @Html.ValidationMessageFor(n => n.Email)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"> @Html.LabelFor(n => n.age) </div>
+            <div class="col-md-5"> @Html.TextBoxFor(n => n.age, new { @class = "form_control" }) </div>
+            <div class="col-md-3"> @Html.ValidationMessageFor(n => n.age)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"> @Html.LabelFor(n => n.Password) </div>
+            <div class="col-md-5"> @Html.PasswordFor(n => n.Password, new { @class = "form_control" }) </div>
+            <div class="col-md-3"> @Html.ValidationMessageFor(n => n.Password)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"> @Html.LabelFor(n => n.confirm_password) </div>
+            <div class="col-md-5"> @Html.PasswordFor(n => n.confirm_password, new { @class = "form_control" }) </div>
+            <div class="col-md-3"> @Html.ValidationMessageFor(n => n.confirm_password)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"> @Html.LabelFor(n => n.Address) </div>
+            <div class="col-md-5"> @Html.TextBoxFor(n => n.Address, new { @class = "form_control" }) </div>
+            <div class="col-md-3"> @Html.ValidationMessageFor(n => n.Address)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"> @Html.LabelFor(n => n.deptId) </div>
+            <div class="col-md-5"> @Html.DropDownListFor(n => n.deptId, (SelectList)ViewBag.dept, new { @class = " form_control" }) </div>
+            <div class="col-md-3"> @Html.ValidationMessageFor(n => n.deptId)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"> Photo </div>
+            <div class="col-md-5"> <input type="file" name="img" /> </div>
+            <div class="col-md-3"></div>
+        </div>
+        <input type="submit" value="submit" class="btn btn-info"  />
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+}
